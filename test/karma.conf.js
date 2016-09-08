@@ -44,6 +44,7 @@ module.exports = function(config) {
       'bower_components/Scroll-To/scrollTo.js',
       'bower_components/moment/moment.js',
       'bower_components/angular-momentjs/angular-momentjs.js',
+      'bower_components/d3/d3.js',
       'bower_components/rickshaw/rickshaw.js',
       'bower_components/angular-messages/angular-messages.js',
       'bower_components/flexslider/jquery.flexslider.js',

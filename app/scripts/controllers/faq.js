@@ -13,7 +13,7 @@ angular.module('odaChallengeApp')
     $scope.$on('$viewContentLoaded', function(event) {
       event.preventDefault();
 
-      $http.get('http://localhost:8000/content/faq').then(
+      $http.get('http://api.it-akademy.com/content/faq').then(
         function(response) {
           console.log(response);
           $scope.pageContent = response.data.data.content;

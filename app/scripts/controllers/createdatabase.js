@@ -204,11 +204,6 @@ angular.module('odaChallengeApp')
         'val' : false
       },
       {
-        'name' : 'primary',
-        'controlType' : 'boolean',
-        'val' : false
-      },
-      {
         'name' : 'unique',
         'controlType' : 'boolean',
         'val' : false
@@ -272,6 +267,9 @@ angular.module('odaChallengeApp')
       else if(!$scope.fieldName.length) {
         throw new Error('Field name must be a string');
       }
+      else if($scope.fieldName === 'id') {
+        throw new Error('Field name must not be "id"');
+      }
       else {
         $scope.database.tableName = $scope.tableName;
 
@@ -289,7 +287,7 @@ angular.module('odaChallengeApp')
     };
 
     $scope.createDb = function() {
-      $http.post('http://127.0.0.1:8000/table/test', $scope.database).then(
+      $http.post('http://api.it-akademy.com/table/test', $scope.database).then(
         function(success) {
           console.log('success:', success);
         },

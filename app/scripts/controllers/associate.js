@@ -12,8 +12,8 @@
 
 
       $scope.deleteAssociate = function (id){
-        console.log('http://localhost:8000/associate/'+id);
-        $http.delete('http://localhost:8000/associate/'+id).then(function(successResponse) {
+        console.log('http://api.it-akademy.com/associate/'+id);
+        $http.delete('http://api.it-akademy.com/associate/'+id).then(function(successResponse) {
           console.log(successResponse);
             $scope.getAssociate();
         }, function(errorResponse) {
@@ -22,7 +22,7 @@
       };
 
       $scope.getAssociate = function(){
-        $http.get( 'http://localhost:8000/associate' ).then(
+        $http.get( 'http://api.it-akademy.com/associate' ).then(
           function(successGetAssociates) {
             console.log(successGetAssociates);
             $scope.associates = successGetAssociates.data.undercustomer;
@@ -119,7 +119,7 @@
             }
         };
 
-        $http.post('http://localhost:8000/associate', dataStructured).then(function(successResponse) {
+        $http.post('http://api.it-akademy.com/associate', dataStructured).then(function(successResponse) {
           console.log(successResponse);
           $('#myModal').modal('toggle');
           $scope.getAssociate();

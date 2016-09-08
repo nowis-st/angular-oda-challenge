@@ -12,7 +12,7 @@ angular.module('odaChallengeApp')
 
   	$scope.$on('$viewContentLoaded', function(event) {
       event.preventDefault();
-      $http.get('http://localhost:8000/DataTest/phone.json').then(
+      $http.get('http://api.it-akademy.com/DataTest/phone.json').then(
         function (response) {
            $scope.phone = response.data.phone;
            console.log($scope.phone);
@@ -42,7 +42,7 @@ angular.module('odaChallengeApp')
       }
 
       if(check === true) {
-        $http.post('http://localhost:8000/supportContact', reqInfo);
+        $http.post('http://api.it-akademy.com/supportContact', reqInfo);
       }
 
     };

@@ -98,9 +98,9 @@ angular.module('odaChallengeApp')
         }
       };
 
-      $http.post('http://localhost:8000/registration', dataStructured).then(function(successResponse) {
+      $http.post('http://api.it-akademy.com/registration', dataStructured).then(function(successResponse) {
         console.log(successResponse);
-        $http.post('http://localhost:8000/sign-in', dataLogin).then(function(successResponse) {
+        $http.post('http://api.it-akademy.com/sign-in', dataLogin).then(function(successResponse) {
           console.log(successResponse);
           $rootScope.idSession = successResponse.data.idSession;
           $rootScope.token = successResponse.data.token;

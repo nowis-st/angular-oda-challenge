@@ -12,7 +12,7 @@ angular.module('odaChallengeApp')
     $scope.$on('$viewContentLoaded', function(event) {
       event.preventDefault();
 
-      $http.get('http://localhost:8000/contents').then(
+      $http.get('http://api.it-akademy.com/contents').then(
         function(response) {
            $scope.pages = response.data.data;
         },
@@ -38,12 +38,12 @@ angular.module('odaChallengeApp')
         }
       };
 
-      console.log('http://localhost:8000/content' + $scope.url.url + '/update');
+      console.log('http://api.it-akademy.com/content' + $scope.url.url + '/update');
 
-      $http.post('http://localhost:8000/content' + $scope.url.url + '/update', data).then(function(successResponse) {
+      $http.post('http://api.it-akademy.com/content' + $scope.url.url + '/update', data).then(function(successResponse) {
           console.log(successResponse);
 
-          $http.get('http://localhost:8000/contents').then(
+          $http.get('http://api.it-akademy.com/contents').then(
             function(response) {
                $scope.pages = response.data.data;
             },

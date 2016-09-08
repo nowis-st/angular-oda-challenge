@@ -68,7 +68,7 @@
 
     			console.log(data);
 
-  		    $http.put('http://localhost:8000/account/6', data).then(function(successResponse) {
+  		    $http.put('http://api.it-akademy.com/account/6', data).then(function(successResponse) {
   		        console.log(successResponse);
   		    }, function(errorResponse) {
   		        console.log(errorResponse);
@@ -79,7 +79,7 @@
       $scope.$on('$viewContentLoaded', function(event) {
         event.preventDefault();
 
-        $http.get('http://localhost:8000/account/6').then(
+        $http.get('http://api.it-akademy.com/account/6').then(
           function(response) {
              $scope.profil = response.data.data;
              console.log($scope.profil);
