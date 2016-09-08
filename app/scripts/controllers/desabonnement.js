@@ -12,7 +12,7 @@ angular.module('odaChallengeApp')
 
   	$scope.desabo = function(){
 
-  		$http.post('http://api.it-akademy.com/desabonnement/6').then(
+  		$http.post('http://api.yoda4.it-akademy.com/desabonnement/6').then(
         function(response) {
           console.log(response);
           window.alert('Votre désabonnement a été pris en compte');

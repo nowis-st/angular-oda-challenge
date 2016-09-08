@@ -13,7 +13,7 @@ angular.module('odaChallengeApp')
   	$scope.$on('$viewContentLoaded', function(event) {
       event.preventDefault();
 
-      $http.get('http://api.it-akademy.com/abonnement').then(
+      $http.get('http://api.yoda4.it-akademy.com/abonnement').then(
         function(response) {
           console.log(response);
           $scope.abonnement = response.data.data.abonnement;

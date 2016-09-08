@@ -34,7 +34,7 @@ angular.module('odaChallengeApp')
           data: user
         };
 
-        $http.post('http://api.it-akademy.com/sign-in', data).then(
+        $http.post('http://api.yoda4.it-akademy.com/sign-in', data).then(
           function(successResponse) {
             console.log(successResponse);
             $rootScope.idSession = successResponse.data.idSession;

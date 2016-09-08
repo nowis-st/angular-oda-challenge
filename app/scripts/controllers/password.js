@@ -28,7 +28,7 @@ angular.module('odaChallengeApp')
 
           console.log(data);
 
-          $http.put('http://api.it-akademy.com/account/6/password', data).then(function(successResponse) {
+          $http.put('http://api.yoda4.it-akademy.com/account/6/password', data).then(function(successResponse) {
             console.log(successResponse);
           }, function(errorResponse) {
             console.log(errorResponse);

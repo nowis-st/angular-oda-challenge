@@ -287,7 +287,7 @@ angular.module('odaChallengeApp')
     };
 
     $scope.createDb = function() {
-      $http.post('http://api.it-akademy.com/table/test', $scope.database).then(
+      $http.post('http://api.yoda4.it-akademy.com/table/test', $scope.database).then(
         function(success) {
           console.log('success:', success);
         },
