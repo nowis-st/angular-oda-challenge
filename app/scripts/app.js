@@ -22,7 +22,9 @@ angular
     'ui.grid.pagination',
     'ui.tinymce',
     'angular-momentjs',
-    'ngMessages'
+    'ngMessages',
+    'textAngular',
+    'ui.select'
   ])
 
   .config(function ($stateProvider, $urlRouterProvider) {
@@ -42,7 +44,11 @@ angular
         })
         .state('login', {
           url: '/login',
-          templateUrl: 'views/login.html',
+          templateUrl: 'views/login.html'
+        })
+        .state('logout', {
+          url: '/logout',
+          controller: 'LogoutCtrl'
         })
         .state('reqInfo', {
           url: '/reqInfo',
@@ -124,19 +130,39 @@ angular
         // })
 
         // Dashboard
+        .state('tarifs', {
+          url: '/admin/tarifs',
+          templateUrl: 'views/tarifs.html',
+          controller: 'TarifsCtrl'
+        })
         .state('admin-dashboard', {
           url: '/admin',
           templateUrl: 'views/admin-dashboard.html',
           controller: 'DashboardCtrl'
         })
+        .state('admin-orders', {
+          url: '/admin/orders',
+          templateUrl: 'views/admin-orders.html',
+          controller: 'OrdersCtrl'
+        })
+        .state('admin-order', {
+          url: '/admin/orders/:id',
+          templateUrl: 'views/admin-order.html',
+          controller: 'OrderCtrl'
+        })
+        .state('admin-order-download', {
+          url: '/admin/orders/:id/download',
+          templateUrl: 'views/admin-order-download.html',
+          controller: 'OrderDownloadCtrl'
+        })
 
         .state('users', {
-          url: '/users',
+          url: '/admin/users',
           templateUrl: 'views/users.html',
           controller: 'UsersCtrl'
         })
         .state('user', {
-          url: '/users/user/:userId',
+          url: '/admin/users/user/:userId',
           templateUrl: 'views/user.html',
           controller: 'UserCtrl'
         })
@@ -146,17 +172,17 @@ angular
           controller: 'DatabasesCtrl'
         })
         .state('database', {
-          url: '/databases/database/:databaseId',
+          url: '/databases/database/:dbname',
           templateUrl: 'views/database.html',
           controller: 'DatabaseCtrl'
         })
         .state('pages', {
-          url: '/pages',
+          url: '/admin/pages',
           templateUrl: 'views/pages.html',
           controller: 'PagesCtrl'
         })
         .state('page', {
-          url: '/pages/page/pageId',
+          url: '/admin/pages/page/pageId',
           templateUrl: 'views/page.html',
           controller: 'PageCtrl'
         })
@@ -200,10 +226,8 @@ angular
         });
     })
     .run(['$cookies', '$rootScope', function($cookies, $rootScope) {
-      $rootScope.token      = false;
-      $rootScope.idSession  = false;
+      $rootScope.user = false;
       if ($cookies.getObject('odaLogin')) {
-        $rootScope.token      = $cookies.getObject('odaLogin').token;
-        $rootScope.idSession  = $cookies.getObject('odaLogin').tokenidSession;
+        $rootScope.user = $cookies.getObject('odaLogin');
       }
     }]);

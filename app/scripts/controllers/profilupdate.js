@@ -8,7 +8,7 @@
    * Controller of the odaChallengeApp
    */
   angular.module('odaChallengeApp')
-    .controller('ProfilupdateCtrl', ['$scope', '$http', function ($scope, $http) {
+    .controller('ProfilupdateCtrl', ['$scope', '$http', '$rootScope', function ($scope, $http, $rootScope) {
     	$scope.profil = false;
 
       $scope.updateProfil = function() {
@@ -37,19 +37,19 @@
         else if(!regFirstname.test($scope.profil.firstname)) {
           $scope.errorMessage = 'Veuillez entrer un prénom valide';
   		    check = false;
-        } 
+        }
         else if(!regLastname.test($scope.profil.lastname)) {
     			$scope.errorMessage = 'Veuillez entrer un nom valide';
     			check = false;
-        } 
+        }
         else if (typeof $scope.profil.zipcode === 'undefined' || !$scope.profil.zipcode.length) {
           $scope.errorMessage = 'Veuillez entrer un code postal';
           check = false;
-  	    } 
+  	    }
         else if (!regCity.test($scope.profil.city)) {
           $scope.errorMessage = 'Veuillez entrer une ville valide';
           check = false;
-  	    } 
+  	    }
         else if (typeof $scope.profil.phone === 'undefined' || !$scope.profil.phone.length) {
           $scope.errorMessage = 'Veuillez entrer un numéro de téléphone';
           check = false;
@@ -68,7 +68,8 @@
 
     			console.log(data);
 
-  		    $http.put('http://api.yoda4.it-akademy.com/account/6', data).then(function(successResponse) {
+  		    $http.put('http://api-yoda4.it-akademy.com/account/' + $rootScope.user.idUser + '?token=' + $rootScope.user.token, data).then(function(successResponse) {
+
   		        console.log(successResponse);
   		    }, function(errorResponse) {
   		        console.log(errorResponse);
@@ -79,7 +80,7 @@
       $scope.$on('$viewContentLoaded', function(event) {
         event.preventDefault();
 
-        $http.get('http://api.yoda4.it-akademy.com/account/6').then(
+        $http.get('http://api-yoda4.it-akademy.com/account/' + $rootScope.user.idUser + '?token=' + $rootScope.user.token).then(
           function(response) {
              $scope.profil = response.data.data;
              console.log($scope.profil);

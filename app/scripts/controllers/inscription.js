@@ -8,7 +8,7 @@
  * Controller of the odaChallengeApp
  */
 angular.module('odaChallengeApp')
-  .controller('InscriptionCtrl', ['$scope', '$http', '$rootScope', '$cookies', '$location', function ($scope, $http, $rootScope, $cookies, $location) {
+  .controller('InscriptionCtrl', ['$scope', '$http', '$rootScope', '$cookies', '$state', function ($scope, $http, $rootScope, $cookies, $state) {
     $scope.inscriptionSubmit = function() {
       var tem = true;
       $scope.usernameMessage    = false;
@@ -98,14 +98,30 @@ angular.module('odaChallengeApp')
         }
       };
 
-      $http.post('http://api.yoda4.it-akademy.com/registration', dataStructured).then(function(successResponse) {
+      $http.post('http://api-yoda4.it-akademy.com/registration', dataStructured).then(function(successResponse) {
         console.log(successResponse);
-        $http.post('http://api.yoda4.it-akademy.com/sign-in', dataLogin).then(function(successResponse) {
+        $http.post('http://api-yoda4.it-akademy.com/sign-in', dataLogin).then(function(successResponse) {
           console.log(successResponse);
-          $rootScope.idSession = successResponse.data.idSession;
-          $rootScope.token = successResponse.data.token;
-          $cookies.putObject('odaLogin', { token: successResponse.data.token, idSession: successResponse.data.idSession });
-          $location.path('/');
+          $rootScope.user = {
+            token: successResponse.data.token,
+            idSession: successResponse.data.idSession,
+            idUser: successResponse.data.user.id
+          };
+          $http.get('http://api-yoda4.it-akademy.com/is-admin?token=' + $rootScope.user.token).then(
+            function(response) {
+              console.log(response);
+              $rootScope.user.isAdmin = response.data.data.is_admin;
+              console.log($rootScope.user);
+              $cookies.putObject('odaLogin', $rootScope.user);
+              if ($rootScope.user.isAdmin) {
+                  $state.go('admin-dashboard');
+              } else {
+                  $state.go('home');
+              }
+            },
+            function(response) {
+              console.log(response);
+            });
         }, function(errorResponse) {
           console.log(errorResponse);
         });

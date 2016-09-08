@@ -8,7 +8,7 @@
  * Controller of the odaChallengeApp
  */
 angular.module('odaChallengeApp')
-  .controller('CreatedatabaseCtrl', function ($scope, $http) {
+  .controller('CreatedatabaseCtrl', function ($scope, $http, $state) {
     $scope.tableName = '';
     $scope.fieldName = '';
 
@@ -287,13 +287,14 @@ angular.module('odaChallengeApp')
     };
 
     $scope.createDb = function() {
-      $http.post('http://api.yoda4.it-akademy.com/table/test', $scope.database).then(
-        function(success) {
-          console.log('success:', success);
+      $http.post('http://api-yoda4.it-akademy.com/create/table', {'data': $scope.database}).then(
+        function() {
+          window.alert('Table created !');
+          $state.go('databases');
         },
 
-        function(error) {
-          console.log('error:',error);
+        function(errorCreateDb) {
+          console.log('error:',errorCreateDb.message);
         }
       );
 

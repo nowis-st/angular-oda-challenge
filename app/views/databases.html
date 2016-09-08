@@ -1,1 +1,7 @@
-<p>This is the databases view.</p>
+<h3>Mes bases de données</h3>
+
+<a ui-sref="createdatabase">Ajouter une base de données</a>
+
+<ul>
+  <li ng-repeat="database in databases">{{database.tablename}} <a ui-sref="database({dbname: database.tablename})">Détails</a></li>
+</ul>

@@ -1535,3 +1535,13 @@ Color on mobile
     color: #fff;
   }
 }
+
+.grid {
+  width: 500px;
+  height: 200px;
+}
+=======
+.isActiveAbo{
+  background-color:#f55e25;
+  border-bottom:5px solid #f55e25;
+}

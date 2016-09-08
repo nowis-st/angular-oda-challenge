@@ -12,8 +12,7 @@ angular.module('odaChallengeApp')
 
     $scope.$on('$viewContentLoaded', function(event) {
       event.preventDefault();
-
-      $http.get('http://api.yoda4.it-akademy.com/content/faq').then(
+      $http.get('http://api-yoda4.it-akademy.com/content/faq').then(
         function(response) {
           console.log(response);
           $scope.pageContent = response.data.data.content;

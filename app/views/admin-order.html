@@ -1,0 +1,54 @@
+<div class="page page-dashboard">
+
+  <div class="pageheader">
+
+    <h2>{{page.title}} <span>// {{page.subtitle}}</span></h2>
+
+    <div class="page-bar">
+
+      <ul class="page-breadcrumb">
+        <li>
+          <a ui-sref="home"><i class="fa fa-home"></i> {{main.title}}</a>
+        </li>
+        <li>
+          <a ui-sref="admin-order">{{page.title}}</a>
+        </li>
+      </ul>
+
+    </div>
+
+
+    <div class="row">
+        <br>
+        <div class="container">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>User ID</th>
+                  <th>Abonnement</th>
+                  <th>Prix</th>
+                  <th>Date création</th>
+                  <th>Date modification</th>
+                  <th>PDF</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th>{{ order.id }}</th>
+                  <td>{{ order.user_id }}</td>
+                  <td>{{ order.offer_id }}</td>
+                  <td>{{ order.vat }} €</td>
+                  <td ng-bind="formatDate(order.created_at) | date:'dd/MM/yyyy'"></td>
+                  <td ng-bind="formatDate(order.updated_at) | date:'dd/MM/yyyy'"></td>
+                  <td><a target="_blank" href="{{link}}" class="btn btn-primary">Télécharger</a></td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+    </div>
+
+  </div>
+
+</div>

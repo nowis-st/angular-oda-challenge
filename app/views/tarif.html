@@ -10,7 +10,7 @@
 
 			<div class="col-md-4" ng-repeat="tarif in tarifList | orderBy:'id'">
 				<div class="pricing-wrapper">
-					<div class="pricing-head">
+					<div ng-class="{'isActiveAbo':aboEnCours === tarif.id}" class="pricing-head">
 						<span class="pricing-price">{{ tarif.price }}€</span>
 						<h4>{{ tarif.title }}</h4>
 						<p>Fonctionnalités limitées</p>
@@ -18,20 +18,12 @@
 					<ul ng-bind-html="tarif.description | stringToHtml">
 					</ul>
 					<div class="pricing-bottom">
-						<a ng-show="token" href="#" class="btn btn-default btn-bordered btn-lg">Sélectionner</a>
-						<a ng-hide="token" href="#" class="btn btn-default btn-bordered btn-lg">S'inscrire</a>
+						<a ng-if="aboEnCours !== tarif.id" ng-show="user.token" ng-click='subscribe(tarif.id)' href="#" class="btn btn-default btn-bordered btn-lg">Sélectionner</a>
+
+						<a ng-hide="user.token" ui-sref="login" class="btn btn-default btn-bordered btn-lg">S'inscrire</a>
 					</div>
 				</div>
 			</div>
-
-
-
-
-
-
-
-
-
 
 
 
